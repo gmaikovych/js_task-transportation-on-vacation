@@ -4,23 +4,26 @@
  * @return {number}
  */
 function calculateRentalCost(days) {
-  const DAY_PRICE = 40;
-  const SHORT_STAY = 2;
-  const MIDDLE_STAY = 6;
-  const MIDDLE_STAY_DISCOUNT = 20;
-  const LONG_STAY_DISCOUNT = 50;
 
-  const fullAmount = days * DAY_PRICE;
+  /* According to task requirements the discounts are fixed. */
 
-  if (days <= SHORT_STAY) {
-    return fullAmount;
+  const PRICE_PER_DAY = 40;
+  const LONG_TERM = 7;
+  const LONG_TERM_DISCOUNT = 50;
+  const SHORT_TERM = 3;
+  const SHORT_TERM_DISCOUNT = 20;
+
+  const basePrice = days * PRICE_PER_DAY;
+
+  if (days >= LONG_TERM) {
+    return basePrice - LONG_TERM_DISCOUNT;
   }
 
-  if (days <= MIDDLE_STAY) {
-    return fullAmount - MIDDLE_STAY_DISCOUNT;
+  if (days >= SHORT_TERM) {
+    return basePrice - SHORT_TERM_DISCOUNT;
   }
 
-  return fullAmount - LONG_STAY_DISCOUNT;
+  return basePrice;
 }
 
 module.exports = calculateRentalCost;
